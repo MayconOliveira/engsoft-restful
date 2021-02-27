@@ -24,13 +24,13 @@ transfere XML, JavaScript Object Notation (JSON) ou ambos.
 REST usa formato de mensagem menor e fornece eficiência de custo ao longo do tempo 
 e melhor desempenho por causa payload reduzido e das mensagens JSON com as quais faz a comunicação. 
 
-− Curva de aprendizado é reduzida. 
-− Suporta comunicação sem estado. 
+− Curva de aprendizado é reduzida.
+− Suporta comunicação sem estado.
 − É simples de aprender e implementar.
-− Eficientemente usa verbos HTTP. 
+− Eficientemente usa verbos HTTP.
 - Além de JSON (JavaScript Object Notation) também pode usar xml.
-− Para segurança, usa padrões HTTP. 
-− REST pode ser consumido por qualquer cliente. 
+- − Para segurança, usa padrões HTTP.
+− REST pode ser consumido por qualquer cliente.
 − Fornece os dados disponíveis como recurso. 
 
 Em comparação ao SOAP o REST não cobre todas as variedades de padrões de serviço da web, 
