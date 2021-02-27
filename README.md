@@ -23,6 +23,7 @@ transfere XML, JavaScript Object Notation (JSON) ou ambos.
 ### 3. Apresente as diferenças entre serviços SOAP e serviços RESTful.
 REST usa formato de mensagem menor e fornece eficiência de custo ao longo do tempo 
 e melhor desempenho por causa payload reduzido e das mensagens JSON com as quais faz a comunicação. 
+
 − Curva de aprendizado é reduzida. 
 − Suporta comunicação sem estado. 
 − É simples de aprender e implementar.
@@ -34,6 +35,7 @@ e melhor desempenho por causa payload reduzido e das mensagens JSON com as quais
 
 Em comparação ao SOAP o REST não cobre todas as variedades de padrões de serviço da web, 
 como segurança, transações, diferentes protocolos de transporte, etc.
+
 - Requisitos REST (especialmente GET) não são adequados para grande quantidade de dados.
 - Latência nos tempos de processamento de pedidos e uso de largura de banda. 
 - REST APIs acabam dependendo dos cabeçalhos para o estado (como para rotear solicitações subsequentes para o mesmo servidor back-end que manipulou a atualização anterior ou para autenticação). 
