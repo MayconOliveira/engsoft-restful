@@ -1,4 +1,5 @@
 # Api CPF Web
+Implementação de serviço restful em Python e cliente spa em ReactJS dos conceitos aprendidos em aula.
 
 ## Conceitual
 
@@ -29,7 +30,7 @@ e melhor desempenho por causa payload reduzido e das mensagens JSON com as quais
 − É simples de aprender e implementar.
 − Eficientemente usa verbos HTTP.
 - Além de JSON (JavaScript Object Notation) também pode usar xml.
-- − Para segurança, usa padrões HTTP.
+- Para segurança, usa padrões HTTP.
 − REST pode ser consumido por qualquer cliente.
 − Fornece os dados disponíveis como recurso. 
 
@@ -42,9 +43,7 @@ como segurança, transações, diferentes protocolos de transporte, etc.
 dependendo da implementação o uso de cabeçalhos é desajeitado e vincula a API ao http como um transporte.
 
 ### 4. Na opinião do grupo, qual tipo de serviço é mais fácil e rápido de implementar? Justifique.
-REST, devido a popularização do REST nos dias atuais API RESTful se tornou padrão e 
-consequentemente a disponibilização de facilitadores, frameworks, bibliotecas e o acesso ao 
-conteúdo relacionado a este padrão.
+REST, devido a padronização na adoção do REST para implementação de API nos dias atuais há uma facilidade em encontrar facilitadores, bibliotecas e frameworks além de ampla variedade de códigos exemplos, documentações e diversos conteúdos relacionado a este tipo de serviço. 
 
 Referências
 Alex Rodriguez.: RESTful Web services: The basics. developWorks IBM (2008). 
