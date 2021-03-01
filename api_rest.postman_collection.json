@@ -276,7 +276,28 @@
 			"response": []
 		},
 		{
-			"name": "Pessoa",
+			"name": "Pessoa por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas/54518536061",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas",
+						"54518536061"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pessoas",
 			"request": {
 				"method": "GET",
 				"header": [],

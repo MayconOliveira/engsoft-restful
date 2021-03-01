@@ -115,6 +115,27 @@ def get_enderecos():
     return jsonify({"enderecos": enderecos})
 
 
+# retorna todos as pessoas
+@app.route("/api/pessoas", methods=["GET"])
+def get_pessoas():
+    g.db = connect_db()
+    cur = g.db.execute(
+        "SELECT id, cpf, nome, data_nascimento, endereco_id FROM pessoas"
+    )
+    pessoas = [
+        dict(
+            id=row[0],
+            cpf=row[1],
+            nome=row[2],
+            data_nascimento=row[3],
+            endereco_id=row[4],
+        )
+        for row in cur.fetchall()
+    ]
+    g.db.close()
+    return jsonify({"pessoas": pessoas})
+
+
 # esse é a rota q o prof pediu no exercício. "dado um CPF, retorne a pessoa e seu endereço completo"
 @app.route("/api/pessoas/<string:cpf>", methods=["GET"])
 def get_pessoa(cpf=None):
