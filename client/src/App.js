@@ -15,6 +15,10 @@ function App() {
     load()
   });
 
+  /**
+   * Métodos responsável por buscar todas as pessoas e adicionar em um state.
+   * @uses useEffect()
+   */
   const load = () =>{
     api.get('/pessoas')
     .then((data) => {
@@ -64,13 +68,11 @@ function App() {
                     </thead>
                     <tbody>
                       {
-
-                        
-                          state.map((value,index) =>{
-                            return (
-                              <Client value={value} key={index} />
-                            )
-                          })
+                        state.map((value,index) =>{
+                          return (
+                            <Client value={value} key={index} />
+                          )
+                        })
                       }
                     </tbody>
                   </table>
