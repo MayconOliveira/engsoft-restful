@@ -585,27 +585,16 @@ def delete_endereco(endereco_id=None):
         g.db.close()
 
 
-# Removendo uma pessoa fornecendo um JSON
+# Removendo uma pessoa fornecendo só o ID
 @app.route("/api/pessoas/<int:pessoa_id>", methods=["DELETE"])
 def delete_pessoa(pessoa_id=None):
-    # aqui eu verifico se o payload é JSON e se é referente a País
-    if not request.json or not "pessoa" in request.json:
-        return make_response(jsonify({"error": "JSON não fornecido"}), 404)
-
-    # aqui eu verifico se a Id enviada pelo payload confere com a id fornecida na URI
-    # segundo o padrão RFC 7231 da IETF https://tools.ietf.org/html/rfc7231#section-4.3.4
-    pessoa_id_uri = request.json["pessoa"]["id"]
-    if pessoa_id != pessoa_id_uri:
-        return make_response(
-            jsonify({"error": "Id da payload não confere com a Id da URI."}), 404
-        )
 
     try:
         g.db = connect_db()
         cur = g.db.cursor()
         cur.execute(
             "DELETE FROM pessoas where id = ?",
-            [pessoa_id_uri],
+            [pessoa_id],
         )
 
         g.db.commit()
