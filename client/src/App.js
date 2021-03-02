@@ -5,15 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit,faUserMinus,faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import api from './axiosinstance';
-import Client from "./client";
+import Client from "./Client";
+import Modal from 'react-bootstrap4-modal';
+import Form from "./Form";
 
 function App() {
   const [state,setState] = useState([]);
-
+  const [modal,setModal] = useState(false);
 
   useEffect(() => {
     load()
-  });
+  },[]);
 
   /**
    * Métodos responsável por buscar todas as pessoas e adicionar em um state.
@@ -24,10 +26,30 @@ function App() {
     .then((data) => {
       return data.data;
     }).then(data => {
-      setState(data);
+      setState(data.pessoas);
     })
   }
 
+  /**
+   * Método responsável por buscar a pessoa pelo número do CPF
+   * @param {*} e 
+   */
+  const getPessoa = (e) => {   
+    if(e.target.value.length > 0 ) {
+      api.get('/pessoas/'+e.target.value)
+      .then((data) => {
+        return data.data;
+      }).then(data => {
+        setState(data.pessoa);
+      })
+    }else{
+      load()
+    }
+  }
+
+  /**
+   * Retorno da aplicação.
+   */
   return (
     <div className="main-content">
       <div className="container mt-5">   
@@ -35,7 +57,7 @@ function App() {
         <div className="row justify-content-md-center"> 
           <div className="col-md-6">
             <div className="form-group">
-              <input type="text" name="busca" placeholder="Buscar por CPF" className="form-control" />
+              <input type="text" name="busca" onChange={getPessoa} placeholder="Buscar por CPF" className="form-control" />
             </div>
           </div>          
         </div>
@@ -48,7 +70,7 @@ function App() {
                     <h5 className="mt-1">Pessoas</h5>
                   </div>
                   <div className="col-md-6">
-                    <button className="btn btn-success btn-icon-only" style={{float:'right',fontSize:11}}><FontAwesomeIcon icon={faUserPlus} /></button>
+                    <button className="btn btn-success btn-icon-only" style={{float:'right',fontSize:11}} onClick={() => setModal(true)}><FontAwesomeIcon icon={faUserPlus} /></button>
                   </div>
                 </div>                
               </div>
@@ -70,7 +92,7 @@ function App() {
                       {
                         state.map((value,index) =>{
                           return (
-                            <Client value={value} key={index} />
+                            <Client value={value} load={load} key={index} />
                           )
                         })
                       }
@@ -84,6 +106,22 @@ function App() {
           </div>
         </div>
       </div>
+      <Modal visible={modal} >
+        <div className="modal-header">
+          <h5 className="modal-title">Cadastro</h5>
+        </div>
+        <div className="modal-body">
+          <Form />
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={() => setModal(false)}>
+            Cancelar
+          </button>
+          <button type="button" className="btn btn-primary" >
+            Salvar
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

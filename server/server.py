@@ -600,10 +600,10 @@ def delete_endereco(endereco_id=None):
         g.db.close()
 
 
-# Removendo uma pessoa fornecendo um JSON
+# Removendo uma pessoa fornecendo só o ID
 @app.route("/api/pessoas/<int:pessoa_id>", methods=["DELETE"])
 def delete_pessoa(pessoa_id=None):
-   
+
     try:
         g.db = connect_db()
         cur = g.db.cursor()

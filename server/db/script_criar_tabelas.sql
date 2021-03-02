@@ -218,4 +218,4 @@ INSERT INTO bairros(id,sigla,nome,cidade_id) VALUES (84,'IB','Ibagué',45);
 
 INSERT INTO enderecos(id,cep,logradouro,numero,complemento,pais_id,estado_id,cidade_id,bairro_id) VALUES (1,'B1814XAD','Barrio 1 de Mayo',37,'Casa 3',1,1,1,1);
 
-INSERT INTO pessoas(id,cpf,nome,data_nascimento,endereco_id) VALUES (1,'545.185.360-61','Luiz Gonzaga','1912-12-13',1);
+INSERT INTO pessoas(id,cpf,nome,data_nascimento,endereco_id) VALUES (1,'545.185.360-61','Luiz Gonzaga','1912-12-13',1),(2,'158.286.335-42','Anderson','1912-12-13',1);
