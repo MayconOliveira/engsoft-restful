@@ -1,7 +1,9 @@
 from flask import Flask, g, jsonify, abort, make_response, request
 import sqlite3
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # criando a conexao com a base de dados
 def connect_db():
@@ -119,16 +121,29 @@ def get_enderecos():
 @app.route("/api/pessoas", methods=["GET"])
 def get_pessoas():
     g.db = connect_db()
+    campos = "pe.id,cpf,pe.nome as nome_pessoa,strftime('%d/%m/%Y',data_nascimento) as data_nascimento,cep,logradouro,numero,complemento,pa.sigla as pais_sigla,pa.nome as pais_nome,es.sigla as estado_sigla,es.nome as estado_nome,c.sigla as cidade_sigla,c.nome as cidade_nome,b.sigla as bairro_sigla,b.nome as bairro_nome"
+    joins = "inner join enderecos en on pe.endereco_id=en.id inner join paises pa on en.pais_id=pa.id inner join estados es on en.estado_id=es.id inner join cidades c on en.cidade_id=c.id inner join bairros b on en.bairro_id=b.id"
     cur = g.db.execute(
-        "SELECT id, cpf, nome, data_nascimento, endereco_id FROM pessoas"
+        f" SELECT {campos} FROM pessoas pe {joins}"
     )
     pessoas = [
         dict(
-            id=row[0],
+             id=row[0],
             cpf=row[1],
-            nome=row[2],
+            nome_pessoa=row[2],
             data_nascimento=row[3],
-            endereco_id=row[4],
+            cep=row[4],
+            logradouro=row[5],
+            numero=row[6],
+            complemento=row[7],
+            pais_sigla=row[8],
+            pais_nome=row[9],
+            estado_sigla=row[10],
+            estado_nome=row[11],
+            cidade_sigla=row[12],
+            cidade_nome=row[13],
+            bairro_sigla=row[14],
+            bairro_nome=row[15],
         )
         for row in cur.fetchall()
     ]
@@ -141,7 +156,7 @@ def get_pessoas():
 def get_pessoa(cpf=None):
     g.db = connect_db()
     # precisamos definir esse último separador como traço. Pq já vi gente usando barra tb. De repente o cliente tratava isso e enviava a string com pontos e traços?
-    cpf = cpf[0:3] + "." + cpf[3:6] + "." + cpf[6:9] + "-" + cpf[9:11]
+   
     campos = "pe.id,cpf,pe.nome as nome_pessoa,strftime('%d/%m/%Y',data_nascimento) as data_nascimento,cep,logradouro,numero,complemento,pa.sigla as pais_sigla,pa.nome as pais_nome,es.sigla as estado_sigla,es.nome as estado_nome,c.sigla as cidade_sigla,c.nome as cidade_nome,b.sigla as bairro_sigla,b.nome as bairro_nome"
     joins = "inner join enderecos en on pe.endereco_id=en.id inner join paises pa on en.pais_id=pa.id inner join estados es on en.estado_id=es.id inner join cidades c on en.cidade_id=c.id inner join bairros b on en.bairro_id=b.id"
     cur = g.db.execute(
@@ -588,24 +603,13 @@ def delete_endereco(endereco_id=None):
 # Removendo uma pessoa fornecendo um JSON
 @app.route("/api/pessoas/<int:pessoa_id>", methods=["DELETE"])
 def delete_pessoa(pessoa_id=None):
-    # aqui eu verifico se o payload é JSON e se é referente a País
-    if not request.json or not "pessoa" in request.json:
-        return make_response(jsonify({"error": "JSON não fornecido"}), 404)
-
-    # aqui eu verifico se a Id enviada pelo payload confere com a id fornecida na URI
-    # segundo o padrão RFC 7231 da IETF https://tools.ietf.org/html/rfc7231#section-4.3.4
-    pessoa_id_uri = request.json["pessoa"]["id"]
-    if pessoa_id != pessoa_id_uri:
-        return make_response(
-            jsonify({"error": "Id da payload não confere com a Id da URI."}), 404
-        )
-
+   
     try:
         g.db = connect_db()
         cur = g.db.cursor()
         cur.execute(
             "DELETE FROM pessoas where id = ?",
-            [pessoa_id_uri],
+            [pessoa_id],
         )
 
         g.db.commit()
