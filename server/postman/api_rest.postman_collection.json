@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "04c543aa-1ab8-4a98-bde5-11122dfff497",
+		"name": "api_rest",
+		"description": "Seguem abaixo todos os métodos da nossa API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pais",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pais\": {\r\n        \"id\": 7,\r\n        \"sigla\": \"US\",\r\n        \"nome\": \"Estados Unidos da América\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/paises",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"paises"
+					]
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo país."
+			},
+			"response": []
+		},
+		{
+			"name": "Estado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"estado\": {\r\n        \"id\": 16,\r\n        \"sigla\": \"RS\",\r\n        \"nome\": \"Rio Grande do Sul\",\r\n        \"pais_id\": 2\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/estados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"estados"
+					]
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo estado."
+			},
+			"response": []
+		},
+		{
+			"name": "Pessoa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pessoa\": {\r\n        \"id\": 3,\r\n        \"cpf\": \"124.145.900-25\",\r\n        \"nome\": \"Chico Buarque\",\r\n        \"data_nascimento\": \"1944-06-19\",\r\n        \"endereco_id\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de uma nova pessoa."
+			},
+			"response": []
+		},
+		{
+			"name": "Endereco",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endereco\": {\r\n        \"id\": 3,\r\n        \"cep\": \"20500-100\",\r\n        \"logradouro\": \"Rua Principal\",\r\n        \"numero\": 100,\r\n        \"complemento\": \"Apt 701\",\r\n        \"pais_id\": 2,\r\n        \"estado_id\": 9,\r\n        \"cidade_id\": 27,\r\n        \"bairro_id\": 56\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/enderecos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"enderecos"
+					]
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo endereço."
+			},
+			"response": []
+		},
+		{
+			"name": "Paises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/paises",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"paises"
+					]
+				},
+				"description": "Retorna todos os países."
+			},
+			"response": []
+		},
+		{
+			"name": "Enderecos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/enderecos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"enderecos"
+					]
+				},
+				"description": "Retorna todos os endereços."
+			},
+			"response": []
+		},
+		{
+			"name": "Estados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/paises/2/estados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"paises",
+						"2",
+						"estados"
+					]
+				},
+				"description": "Retorna todos os estados de um país, dada a ID do país na URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Cidades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/estados/9/cidades",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"estados",
+						"9",
+						"cidades"
+					]
+				},
+				"description": "Retorna todas as cidades de um estado, após fornecer a ID do estado na URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Bairros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/cidades/27/bairros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"cidades",
+						"27",
+						"bairros"
+					]
+				},
+				"description": "Retorna todos os bairros de uma cidade, dada a ID da cidade na URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Pessoa por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas/54518536061",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas",
+						"54518536061"
+					]
+				},
+				"description": "Retorna uma pessoa dado o seu CPF na URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Pessoas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				},
+				"description": "Retorna todas as pessoas."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar País",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pais\": {\r\n        \"id\": 6,\r\n        \"sigla\": \"US\",\r\n        \"nome\": \"United States\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/paises/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"paises",
+						"6"
+					]
+				},
+				"description": "Altera um país, dada sua ID na URI. Os dados vem pelo corpo da requisição, em formato JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar Pessoa",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pessoa\": {\r\n        \"id\": 2,\r\n        \"cpf\": \"124.145.900-25\",\r\n        \"nome\": \"Chico Buarque\",\r\n        \"data_nascimento\": \"1944-06-19\",\r\n        \"endereco_id\": 2\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas",
+						"2"
+					]
+				},
+				"description": "Altera uma pessoa, fornecendo sua ID na URI. Os dados vem pelo corpo da requisição, em formato JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar Endereço",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endereco\": {\r\n        \"bairro_id\": 1,\r\n        \"cep\": \"B1814XAD\",\r\n        \"cidade_id\": 1,\r\n        \"complemento\": \"Casa 5\",\r\n        \"estado_id\": 1,\r\n        \"id\": 1,\r\n        \"logradouro\": \"Barrio 1 de Mayo\",\r\n        \"numero\": 37,\r\n        \"pais_id\": 1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/enderecos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"enderecos",
+						"1"
+					]
+				},
+				"description": "Altera um endereço, fornecendo sua ID pela URI. Os dados vem pelo corpo da requisição, em formato JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Remover País",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pais\": {\r\n        \"id\": 7\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/paises/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"paises",
+						"7"
+					]
+				},
+				"description": "Remove um país, informando sua ID pela URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Pessoa",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pessoa\": {\r\n        \"id\": 3\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pessoas/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pessoas",
+						"3"
+					]
+				},
+				"description": "Remove uma pessoa, informando sua ID na URI."
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Endereço",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endereco\": {\r\n        \"id\": 3\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/enderecos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"enderecos",
+						"3"
+					]
+				},
+				"description": "Remove um endereço, fornecida sua ID pela URI."
+			},
+			"response": []
+		}
+	]
+}
