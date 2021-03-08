@@ -2,11 +2,12 @@
 	"info": {
 		"_postman_id": "04c543aa-1ab8-4a98-bde5-11122dfff497",
 		"name": "api_rest",
+		"description": "Seguem abaixo todos os métodos da nossa API.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Pais (JSON)",
+			"name": "Pais",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -31,49 +32,8 @@
 						"api",
 						"paises"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Pais (formdata)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "5",
-							"type": "text"
-						},
-						{
-							"key": "sigla",
-							"value": "FR",
-							"contentType": "",
-							"type": "text"
-						},
-						{
-							"key": "nome",
-							"value": "França",
-							"contentType": "",
-							"type": "text"
-						}
-					]
 				},
-				"url": {
-					"raw": "http://localhost:5000/api/paises",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"paises"
-					]
-				}
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo país."
 			},
 			"response": []
 		},
@@ -102,7 +62,8 @@
 						"api",
 						"estados"
 					]
-				}
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo estado."
 			},
 			"response": []
 		},
@@ -131,7 +92,8 @@
 						"api",
 						"pessoas"
 					]
-				}
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de uma nova pessoa."
 			},
 			"response": []
 		},
@@ -160,7 +122,8 @@
 						"api",
 						"enderecos"
 					]
-				}
+				},
+				"description": "Esta requisição POST recebe um arquivo JSON contendo dados para cadastro de um novo endereço."
 			},
 			"response": []
 		},
@@ -181,7 +144,7 @@
 						"paises"
 					]
 				},
-				"description": "retorna um estado"
+				"description": "Retorna todos os países."
 			},
 			"response": []
 		},
@@ -202,7 +165,7 @@
 						"enderecos"
 					]
 				},
-				"description": "retorna um estado"
+				"description": "Retorna todos os endereços."
 			},
 			"response": []
 		},
@@ -225,7 +188,7 @@
 						"estados"
 					]
 				},
-				"description": "retorna um estado"
+				"description": "Retorna todos os estados de um país, dada a ID do país na URI."
 			},
 			"response": []
 		},
@@ -248,7 +211,7 @@
 						"cidades"
 					]
 				},
-				"description": "retorna um estado"
+				"description": "Retorna todas as cidades de um estado, após fornecer a ID do estado na URI."
 			},
 			"response": []
 		},
@@ -271,7 +234,7 @@
 						"bairros"
 					]
 				},
-				"description": "retorna um estado"
+				"description": "Retorna todos os bairros de uma cidade, dada a ID da cidade na URI."
 			},
 			"response": []
 		},
@@ -292,7 +255,8 @@
 						"pessoas",
 						"54518536061"
 					]
-				}
+				},
+				"description": "Retorna uma pessoa dado o seu CPF na URI."
 			},
 			"response": []
 		},
@@ -302,7 +266,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/api/pessoas/54518536061",
+					"raw": "http://localhost:5000/api/pessoas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -310,10 +274,10 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"pessoas",
-						"54518536061"
+						"pessoas"
 					]
-				}
+				},
+				"description": "Retorna todas as pessoas."
 			},
 			"response": []
 		},
@@ -344,7 +308,8 @@
 						"paises",
 						"6"
 					]
-				}
+				},
+				"description": "Altera um país, dada sua ID na URI. Os dados vem pelo corpo da requisição, em formato JSON."
 			},
 			"response": []
 		},
@@ -375,7 +340,8 @@
 						"pessoas",
 						"2"
 					]
-				}
+				},
+				"description": "Altera uma pessoa, fornecendo sua ID na URI. Os dados vem pelo corpo da requisição, em formato JSON."
 			},
 			"response": []
 		},
@@ -406,7 +372,8 @@
 						"enderecos",
 						"1"
 					]
-				}
+				},
+				"description": "Altera um endereço, fornecendo sua ID pela URI. Os dados vem pelo corpo da requisição, em formato JSON."
 			},
 			"response": []
 		},
@@ -437,7 +404,8 @@
 						"paises",
 						"7"
 					]
-				}
+				},
+				"description": "Remove um país, informando sua ID pela URI."
 			},
 			"response": []
 		},
@@ -454,7 +422,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pais\": {\r\n        \"id\": 7\r\n    }\r\n}"
+					"raw": "{\r\n    \"pessoa\": {\r\n        \"id\": 3\r\n    }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/pessoas/3",
@@ -468,7 +436,8 @@
 						"pessoas",
 						"3"
 					]
-				}
+				},
+				"description": "Remove uma pessoa, informando sua ID na URI."
 			},
 			"response": []
 		},
@@ -499,7 +468,8 @@
 						"enderecos",
 						"3"
 					]
-				}
+				},
+				"description": "Remove um endereço, fornecida sua ID pela URI."
 			},
 			"response": []
 		}

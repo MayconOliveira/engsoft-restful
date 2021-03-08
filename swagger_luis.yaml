@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: API CPF Web
+  description: Todos os métodos disponíveis na nossa API REST
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api
+
+tags:
+  - name: Países
+    description: Operações com países
+  - name: Estados
+    description: Operações com estados
+  - name: Cidades
+    description: Operações com cidades
+  - name: Bairros
+    description: Operações com bairros
+  - name: Endereços
+    description: Operações com endereços
+  - name: Pessoas
+    description: Operações com pessoas
+
+paths:
+  /paises:
+    get:
+      tags:
+        - Países
+      description: Retornar todos os países.
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+
+  /paises/{pais_id}/estados:
+    get:
+      tags:
+        - Estados
+      description: Retornar todos os estados de um país.
+      operationId: get_estados
+      parameters:
+        - name: pais_id
+          in: path
+          description: ID de um país
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
