@@ -1,4 +1,5 @@
 from flask import Flask, g, jsonify, abort, make_response, request
+from flask_cors import CORS
 import sqlite3
 import src.get
 import src.post
@@ -6,6 +7,7 @@ import src.put
 import src.delete
 
 app = Flask(__name__)
+CORS(app)
 
 # criando a conexao com a base de dados
 def connect_db():
