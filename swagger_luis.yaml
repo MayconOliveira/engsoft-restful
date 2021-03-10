@@ -4,7 +4,7 @@ info:
   description: Todos os métodos disponíveis na nossa API REST
   version: 1.0.0
 servers:
-  - url: 'http://localhost:5000/api'
+  - url: "http://localhost:5000/api"
 tags:
   - name: Países
     description: Operações com países
@@ -19,13 +19,13 @@ tags:
   - name: Pessoas
     description: Operações com pessoas
 paths:
-  '/paises':
+  "/paises":
     get:
       tags:
         - Países
       description: Retornar todos os países.
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
     post:
       tags:
@@ -37,11 +37,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pais'
+              $ref: "#/components/schemas/Pais"
       responses:
-        '201':
+        "201":
           description: Cadastro realizado com sucesso
-  '/paises/{pais_id}':
+  "/paises/{pais_id}":
     delete:
       tags:
         - Países
@@ -55,7 +55,7 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: O pais foi excluído com sucesso
     put:
       tags:
@@ -74,11 +74,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pais'
+              $ref: "#/components/schemas/Pais"
       responses:
-        '200':
-          description: O pais foi editado com sucesso
-  '/paises/{pais_id}/estados':
+        "200":
+          description: O pais foi editado com sucesso!
+  "/paises/{pais_id}/estados":
     get:
       tags:
         - Estados
@@ -93,9 +93,9 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/estados':
+  "/estados":
     post:
       tags:
         - Estados
@@ -105,11 +105,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Estado'
+              $ref: "#/components/schemas/Estado"
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/paises/{pais_id}/cidades':
+  "/paises/{pais_id}/cidades":
     get:
       tags:
         - Cidades
@@ -124,9 +124,9 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/paises/{pais_id}/bairros':
+  "/paises/{pais_id}/bairros":
     get:
       tags:
         - Bairros
@@ -141,16 +141,16 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/enderecos':
+  "/enderecos":
     get:
       tags:
         - Endereços
       description: Retornar todos os endereços.
       operationId: get_endereco
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
     post:
       tags:
@@ -162,9 +162,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Endereco'
-          
-  '/pessoas/{cpf}':
+              $ref: "#/components/schemas/Endereco"
+
+  "/pessoas/{cpf}":
     get:
       tags:
         - Pessoas
@@ -178,24 +178,24 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/pessoas':
+  "/pessoas":
     get:
       tags:
         - Pessoas
       description: Retornar todos as pessoas.
       operationId: get_Pessoas
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
     post:
       tags:
         - Pessoas
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-  '/pessoas/{pessoa_id}':
+  "/pessoas/{pessoa_id}":
     put:
       tags:
         - Pessoas
@@ -213,9 +213,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ''
+              $ref: ""
       responses:
-        '200':
+        "200":
           description: O pais foi editado com sucess
     delete:
       tags:
@@ -231,16 +231,16 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Conseguiu retornar com sucesso
-          
+
 components:
   schemas:
     Endereco:
       type: object
       properties:
         estado:
-          $ref: '#/components/schemas/Enderesos'
+          $ref: "#/components/schemas/Enderesos"
     Enderesos:
       type: object
       properties:
@@ -290,7 +290,7 @@ components:
       type: object
       properties:
         estado:
-          $ref: '#/components/schemas/Estados'
+          $ref: "#/components/schemas/Estados"
     Paises:
       type: object
       properties:
@@ -308,4 +308,4 @@ components:
       type: object
       properties:
         pais:
-          $ref: '#/components/schemas/Paises'
+          $ref: "#/components/schemas/Paises"
