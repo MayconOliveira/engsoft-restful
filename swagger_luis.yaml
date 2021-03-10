@@ -163,6 +163,46 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Endereco"
+      responses:
+        "201":
+          description: Cadastro realizado com sucesso.
+
+  "/enderecos/{endereco_id}":
+    put:
+      tags:
+        - Endereços
+      parameters:
+        - name: endereco_id
+          in: path
+          description: id de um endereço
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Endereco"
+      responses:
+        "200":
+          description: O pais foi editado com sucesso
+    delete:
+      tags:
+        - Endereços
+      parameters:
+        - name: endereco_id
+          in: path
+          description: id de um endereço
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: O endereço foi editado com sucesso
 
   "/pessoas/{cpf}":
     get:
@@ -247,8 +287,8 @@ components:
       type: object
       properties:
         estado:
-          $ref: "#/components/schemas/Enderesos"
-    Enderesos:
+          $ref: "#/components/schemas/Enderecos"
+    Enderecos:
       type: object
       properties:
         id:
