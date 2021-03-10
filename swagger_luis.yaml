@@ -35,16 +35,16 @@ paths:
         - Países
       description: Cadastra um novo pais
       requestBody:
-        description: Optional description in *Markdown*
+        description: Optional description in Markdown
         required: true
         content:
           application/json:
             schema:
-              $ref: ''
+              $ref: "#/components/schemas/Pais"
       responses:
-        200:
+        201:
           description: Cadastro realizado com sucesso
-  
+
   /paises/{pais_id}:
     delete:
       tags:
@@ -73,16 +73,16 @@ paths:
             type: integer
             format: int64
       requestBody:
-        description: Optional description in *Markdown*
+        description: Optional description in Markdown
         required: true
         content:
           application/json:
             schema:
-              $ref: ''
+              $ref: "#/components/schemas/Pais"
       responses:
         200:
           description: O pais foi editado com sucesso
-    
+
   /paises/{pais_id}/estados:
     get:
       tags:
@@ -100,7 +100,7 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-    
+
   /estados:
     post:
       tags:
@@ -108,7 +108,7 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-    
+
   /paises/{pais_id}/cidades:
     get:
       tags:
@@ -126,7 +126,7 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-  
+
   /paises/{pais_id}/bairros:
     get:
       tags:
@@ -144,7 +144,7 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-          
+
   /enderecos:
     get:
       tags:
@@ -154,128 +154,23 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-    post:
-      tags:
-          - Endereços
-      description: Cadastra um endereços.
-      requestBody:
-        description: Optional description in *Markdown*
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: ''
-      responses:
-        200:
-          description: Cadastrado com sucesso
-          
-  /enderecos/{endereco_id}:
-    put:
-      tags:
-        - Endereços
-      parameters:
-        - name: endereco_id
-          in: path
-          description: id de um endereço
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Optional description in *Markdown*
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: ''
-      responses:
-        200:
-          description: O pais foi editado com sucesso
-    delete:
-      tags:
-        - Endereços
-      parameters:
-        - name: endereco_id
-          in: path
-          description: id de um endereço
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        200:
-          description: O endereço foi editado com sucesso
-   
-  
-  /pessoas/{cpf}:
-    get:
-      tags:
-        - Pessoas
-      description: Retornar uma pessoa
-      operationId: get_Pessoa
-      parameters:
-        - name: cpf
-          in: path
-          description: CPF de uma pessoa
-          required: true
-          schema:
-            type: "string"
-
-      responses:
-        200:
-          description: Conseguiu retornar com sucesso 
-          
-  /pessoas:
-    get:
-      tags:
-        - Pessoas
-      description: Retornar todos as pessoas.
-      operationId: get_Pessoas
-      responses:
-        200:
-          description: Conseguiu retornar com sucesso
-    post:
-      tags:
-        - Pessoas
-      responses:
-        200:
-          description: Conseguiu retornar com sucesso
-          
-  /pessoas/{pessoa_id}:
-    put:
-      tags:
-        - Pessoas
-      parameters:
-        - name: pessoa_id
-          in: path
-          description: ID de uma pessoa
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Optional description in *Markdown*
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: ''
-      responses:
-        200:
-          description: O pais foi editado com sucess
-    delete:
-      tags:
-        - Pessoas
-      description: Retornar todos as pessoas.
-      operationId: delete_Pessoa
-      parameters:
-        - name: pessoa_id
-          in: path
-          description: ID de uma pessoa
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        200:
-          description: Conseguiu retornar com sucesso
+components:
+  schemas:
+    Paises:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+        sigla:
+          type: string
+          example: BR
+        nome:
+          type: string
+          example: Brasil
+    Pais:
+      type: object
+      properties:
+        pais:
+          $ref: "#components/schemas/Paises"

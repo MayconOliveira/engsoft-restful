@@ -49,7 +49,7 @@ def put_pais(pais_id=None):
                 400,
             )
         elif cur.rowcount == 1:
-            return jsonify({"success": "Pais atualizado com sucesso!"}), 201
+            return jsonify({"success": "Pais atualizado com sucesso!"}), 200
     except:
         g.db.rollback()
         return jsonify({"error": "Erro ao atualizar país."}), 400
@@ -111,7 +111,7 @@ def put_endereco(endereco_id=None):
                 400,
             )
         elif cur.rowcount == 1:
-            return jsonify({"success": "Endereço atualizado com sucesso!"}), 201
+            return jsonify({"success": "Endereço atualizado com sucesso!"}), 200
     except:
         g.db.rollback()
         return jsonify({"error": "Erro ao atualizar endereço."}), 400
@@ -165,7 +165,7 @@ def put_pessoa(pessoa_id=None):
                 400,
             )
         elif cur.rowcount == 1:
-            return jsonify({"success": "Pessoa atualizada com sucesso!"}), 201
+            return jsonify({"success": "Pessoa atualizada com sucesso!"}), 200
     except:
         g.db.rollback()
         return jsonify({"error": "Erro ao atualizar pessoa."}), 400
