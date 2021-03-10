@@ -154,3 +154,76 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
+   
+  /pessoas/{cpf}:
+    get:
+      tags:
+        - Pessoas
+      description: Retornar uma pessoa
+      operationId: get_Pessoa
+      parameters:
+        - name: cpf
+          in: path
+          description: CPF de uma pessoa
+          required: true
+          schema:
+            type: "string"
+
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso 
+          
+  /pessoas:
+    get:
+      tags:
+        - Pessoas
+      description: Retornar todos as pessoas.
+      operationId: get_Pessoas
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+    post:
+      tags:
+        - Pessoas
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+          
+  /pessoas/{pessoa_id}:
+    put:
+      tags:
+        - Pessoas
+      parameters:
+        - name: pessoa_id
+          in: path
+          description: ID de uma pessoa
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        200:
+          description: O pais foi editado com sucess
+    delete:
+      tags:
+        - Pessoas
+      description: Retornar todos as pessoas.
+      operationId: delete_Pessoa
+      parameters:
+        - name: pessoa_id
+          in: path
+          description: ID de uma pessoa
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
