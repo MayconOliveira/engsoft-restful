@@ -1,14 +1,10 @@
 from flask import Flask, g, jsonify, abort, make_response, request
 from flask_cors import CORS
 import sqlite3
-<<<<<<< HEAD
-from flask_cors import CORS
-=======
 import src.get
 import src.post
 import src.put
 import src.delete
->>>>>>> 57f99af057c0ac63541baaf5e7a2fed9515949ba
 
 app = Flask(__name__)
 CORS(app)
@@ -57,87 +53,13 @@ def get_enderecos():
 # retorna todos as pessoas
 @app.route("/api/pessoas", methods=["GET"])
 def get_pessoas():
-<<<<<<< HEAD
-    g.db = connect_db()
-    campos = "pe.id,cpf,pe.nome as nome_pessoa,strftime('%d/%m/%Y',data_nascimento) as data_nascimento,cep,logradouro,numero,complemento,pa.sigla as pais_sigla,pa.nome as pais_nome,es.sigla as estado_sigla,es.nome as estado_nome,c.sigla as cidade_sigla,c.nome as cidade_nome,b.sigla as bairro_sigla,b.nome as bairro_nome"
-    joins = "inner join enderecos en on pe.endereco_id=en.id inner join paises pa on en.pais_id=pa.id inner join estados es on en.estado_id=es.id inner join cidades c on en.cidade_id=c.id inner join bairros b on en.bairro_id=b.id"
-    cur = g.db.execute(
-        f" SELECT {campos} FROM pessoas pe {joins}"
-    )
-    pessoas = [
-        dict(
-             id=row[0],
-            cpf=row[1],
-            nome_pessoa=row[2],
-            data_nascimento=row[3],
-            cep=row[4],
-            logradouro=row[5],
-            numero=row[6],
-            complemento=row[7],
-            pais_sigla=row[8],
-            pais_nome=row[9],
-            estado_sigla=row[10],
-            estado_nome=row[11],
-            cidade_sigla=row[12],
-            cidade_nome=row[13],
-            bairro_sigla=row[14],
-            bairro_nome=row[15],
-        )
-        for row in cur.fetchall()
-    ]
-    g.db.close()
-    return jsonify({"pessoas": pessoas})
-=======
     return src.get.get_pessoas()
->>>>>>> 57f99af057c0ac63541baaf5e7a2fed9515949ba
 
 
 # esse é a rota q o prof pediu no exercício. "dado um CPF, retorne a pessoa e seu endereço completo"
 @app.route("/api/pessoas/<string:cpf>", methods=["GET"])
 def get_pessoa(cpf=None):
-<<<<<<< HEAD
-    g.db = connect_db()
-    # precisamos definir esse último separador como traço. Pq já vi gente usando barra tb. De repente o cliente tratava isso e enviava a string com pontos e traços?
-   
-    campos = "pe.id,cpf,pe.nome as nome_pessoa,strftime('%d/%m/%Y',data_nascimento) as data_nascimento,cep,logradouro,numero,complemento,pa.sigla as pais_sigla,pa.nome as pais_nome,es.sigla as estado_sigla,es.nome as estado_nome,c.sigla as cidade_sigla,c.nome as cidade_nome,b.sigla as bairro_sigla,b.nome as bairro_nome"
-    joins = "inner join enderecos en on pe.endereco_id=en.id inner join paises pa on en.pais_id=pa.id inner join estados es on en.estado_id=es.id inner join cidades c on en.cidade_id=c.id inner join bairros b on en.bairro_id=b.id"
-    cur = g.db.execute(
-        f" SELECT {campos} FROM pessoas pe {joins} where pe.cpf = ?", [cpf]
-    )
-    pessoa = [
-        dict(
-            id=row[0],
-            cpf=row[1],
-            nome_pessoa=row[2],
-            data_nascimento=row[3],
-            cep=row[4],
-            logradouro=row[5],
-            numero=row[6],
-            complemento=row[7],
-            pais_sigla=row[8],
-            pais_nome=row[9],
-            estado_sigla=row[10],
-            estado_nome=row[11],
-            cidade_sigla=row[12],
-            cidade_nome=row[13],
-            bairro_sigla=row[14],
-            bairro_nome=row[15],
-        )
-        for row in cur.fetchall()
-    ]
-    g.db.close()
-    return jsonify({"pessoa": pessoa})
-    return jsonify(
-        {"pessoa": cpf[0:3] + "." + cpf[3:6] + "." + cpf[6:9] + "-" + cpf[9:11]}
-    )
-
-
-@app.errorhandler(404)
-def not_found(error):
-    return make_response(jsonify({"error": "Local nao encontrado"}), 404)
-=======
     return src.get.get_pessoa(cpf)
->>>>>>> 57f99af057c0ac63541baaf5e7a2fed9515949ba
 
 
 # -------------------------
