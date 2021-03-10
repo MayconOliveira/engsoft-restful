@@ -3,10 +3,8 @@ info:
   title: API CPF Web
   description: Todos os métodos disponíveis na nossa API REST
   version: 1.0.0
-
 servers:
-  - url: http://localhost:5000/api
-
+  - url: 'http://localhost:5000/api'
 tags:
   - name: Países
     description: Operações com países
@@ -20,15 +18,14 @@ tags:
     description: Operações com endereços
   - name: Pessoas
     description: Operações com pessoas
-
 paths:
-  /paises:
+  '/paises':
     get:
       tags:
         - Países
       description: Retornar todos os países.
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
     post:
       tags:
@@ -40,16 +37,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Pais"
+              $ref: '#/components/schemas/Pais'
       responses:
-        201:
+        '201':
           description: Cadastro realizado com sucesso
-
-  /paises/{pais_id}:
+  '/paises/{pais_id}':
     delete:
       tags:
         - Países
-      operationId: "deletePais"
+      operationId: deletePais
       parameters:
         - name: pais_id
           in: path
@@ -59,7 +55,7 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
+        '200':
           description: O pais foi excluído com sucesso
     put:
       tags:
@@ -78,12 +74,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Pais"
+              $ref: '#/components/schemas/Pais'
       responses:
-        200:
+        '200':
           description: O pais foi editado com sucesso
-
-  /paises/{pais_id}/estados:
+  '/paises/{pais_id}/estados':
     get:
       tags:
         - Estados
@@ -98,18 +93,23 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
-
-  /estados:
+  '/estados':
     post:
       tags:
         - Estados
+      requestBody:
+        description: Optional description in Markdown
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Estado'
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
-
-  /paises/{pais_id}/cidades:
+  '/paises/{pais_id}/cidades':
     get:
       tags:
         - Cidades
@@ -124,10 +124,9 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
-
-  /paises/{pais_id}/bairros:
+  '/paises/{pais_id}/bairros':
     get:
       tags:
         - Bairros
@@ -142,20 +141,156 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
-
-  /enderecos:
+  '/enderecos':
     get:
       tags:
         - Endereços
       description: Retornar todos os endereços.
       operationId: get_endereco
       responses:
-        200:
+        '200':
           description: Conseguiu retornar com sucesso
+    post:
+      tags:
+        - Endereços
+      description: Cadastrar um endereço
+      requestBody:
+        description: Optional description in Markdown
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+          
+  '/pessoas/{cpf}':
+    get:
+      tags:
+        - Pessoas
+      description: Retornar uma pessoa
+      operationId: get_Pessoa
+      parameters:
+        - name: cpf
+          in: path
+          description: CPF de uma pessoa
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Conseguiu retornar com sucesso
+  '/pessoas':
+    get:
+      tags:
+        - Pessoas
+      description: Retornar todos as pessoas.
+      operationId: get_Pessoas
+      responses:
+        '200':
+          description: Conseguiu retornar com sucesso
+    post:
+      tags:
+        - Pessoas
+      responses:
+        '200':
+          description: Conseguiu retornar com sucesso
+  '/pessoas/{pessoa_id}':
+    put:
+      tags:
+        - Pessoas
+      parameters:
+        - name: pessoa_id
+          in: path
+          description: ID de uma pessoa
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: O pais foi editado com sucess
+    delete:
+      tags:
+        - Pessoas
+      description: Retornar todos as pessoas.
+      operationId: delete_Pessoa
+      parameters:
+        - name: pessoa_id
+          in: path
+          description: ID de uma pessoa
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Conseguiu retornar com sucesso
+          
 components:
   schemas:
+    Endereco:
+      type: object
+      properties:
+        estado:
+          $ref: '#/components/schemas/Enderesos'
+    Enderesos:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+        cep:
+          type: string
+          example: 23013-350
+        logradouro:
+          type: string
+          example: Rua Pedro Fontana
+        numero:
+          type: integer
+          format: int64
+          example: 5
+        complemento:
+          type: string
+          example: Próximo a padaria
+        pais_id:
+          type: integer
+          example: 1
+        estado_id:
+          type: integer
+          example: 1
+        cidade_id:
+          type: integer
+          example: 1
+        bairro_id:
+          type: integer
+          example: 1
+    Estados:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+        sigla:
+          type: string
+          example: RJ
+        nome:
+          type: string
+          example: Rio de Janeiro
+    Estado:
+      type: object
+      properties:
+        estado:
+          $ref: '#/components/schemas/Estados'
     Paises:
       type: object
       properties:
@@ -173,4 +308,4 @@ components:
       type: object
       properties:
         pais:
-          $ref: "#components/schemas/Paises"
+          $ref: '#/components/schemas/Paises'
