@@ -30,7 +30,59 @@ paths:
       responses:
         200:
           description: Conseguiu retornar com sucesso
-
+    post:
+      tags:
+        - Países
+      description: Cadastra um novo pais
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        200:
+          description: Cadastro realizado com sucesso
+  
+  /paises/{pais_id}:
+    delete:
+      tags:
+        - Países
+      operationId: "deletePais"
+      parameters:
+        - name: pais_id
+          in: path
+          description: ID de um país
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: O pais foi excluído com sucesso
+    put:
+      tags:
+        - Países
+      parameters:
+        - name: pais_id
+          in: path
+          description: ID de um país
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        200:
+          description: O pais foi editado com sucesso
+    
   /paises/{pais_id}/estados:
     get:
       tags:
@@ -45,6 +97,60 @@ paths:
           schema:
             type: integer
             format: int64
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+    
+  /estados:
+    post:
+      tags:
+        - Estados
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+    
+  /paises/{pais_id}/cidades:
+    get:
+      tags:
+        - Cidades
+      description: Retornar todos as cidades de um país.
+      operationId: get_cidades
+      parameters:
+        - name: pais_id
+          in: path
+          description: ID de um país
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+  
+  /paises/{pais_id}/bairros:
+    get:
+      tags:
+        - Bairros
+      description: Retornar todos os bairros de um país.
+      operationId: get_bairro
+      parameters:
+        - name: pais_id
+          in: path
+          description: ID de um país
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Conseguiu retornar com sucesso
+          
+  /enderecos:
+    get:
+      tags:
+        - Endereços
+      description: Retornar todos os endereços.
+      operationId: get_endereco
       responses:
         200:
           description: Conseguiu retornar com sucesso
